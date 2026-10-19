@@ -23,3 +23,8 @@ body {
 #task_title_input, #task_text_area{
     background: var(--bg-sections);
 }
+
+.new-task {
+    min-width: 320px;
+    max-width: 600px;
+}
