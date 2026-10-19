@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap');
 
+:root {
+    --bg-body: #1F2623;
+    --bg-sections: #2A332F;
+    --color-font: green;
+}
+
 body, h2, h1, #task_title_input, #task_text_area, label{
     font-family: "Geist Pixel", sans-serif;
     font-optical-sizing: auto;
@@ -7,5 +13,13 @@ body, h2, h1, #task_title_input, #task_text_area, label{
     font-style: normal;
     font-variation-settings:
     "ELSH" 0;
-    color: green;
+    color: var(--color-font);
+}
+
+body {
+    background-color: var(--bg-body);
+}
+
+#task_title_input, #task_text_area{
+    background: var(--bg-sections);
 }
