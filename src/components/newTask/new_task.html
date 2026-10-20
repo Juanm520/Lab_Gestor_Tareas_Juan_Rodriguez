@@ -1,0 +1,62 @@
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Estilos propios -->
+<link rel="stylesheet" href="../../styles.css">
+<!-- script principal -->
+<script type="module" src="../newTask/newTask.js"></script>
+
+<body>
+    <section class="new-task bg-dark">
+        <form class=" card gap-1 mt-50 p-4 bg-dark shadow">
+            <section id="title">
+                <h1> Tarea para terminar ¡hoy!: </h1>
+            </section>
+            <section id="task_title" class="">
+                <div class="form-floating mb-1 shadow">
+                    <input type="text" class="form-control" id="task_title_input" placeholder="">
+                    <label for="task_title_input" class="p-2">Nombra la tarea para ¡hoy!</label>
+                </div>
+                <div class="d-flex flex-row-reverse">
+                    <h6><span id="count_char_title"></span>/50</h4>
+                </div>
+            </section>
+            <section id="task_descr">
+                <div class="form-floating mb-1">
+                    <textarea class="form-control" placeholder="" id="task_text_area" style="height: 100px"></textarea>
+                    <label for="task_text_area" class="p-2">Añade la descripción o notas de la tarea:</label>
+                </div>
+                <div class="d-flex flex-row-reverse">
+                    <h6><span id="count_char_desc"></span>/500</h4>
+                </div>
+            </section>
+             <section id="task_priority">
+                <label for="task_priority" class="">Prioridad:</label>
+                <div class="form-floating pb-2">
+                    <button type="button" class="btn btn-outline-secondary">Baja</button>
+                    <button type="button" class="btn btn-outline-secondary">Media</button>
+                    <button type="button" class="btn btn-outline-secondary">Alta</button>
+                </div>
+            </section>
+            <section id="task_initial_time">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="task_title_input" placeholder="">
+                    <label for="task_title_input" class="p-2">Hora de finalización ¡hoy!</label>
+                </div>
+            </section>
+            <section id="task_deadline_time">
+                <div class="d-flex flex-row-reverse form-floating pt-2 gap-4">
+                    <button type="submit" class="btn btn-success ">Agregar tarea</button>
+                    <button type="button" class="btn btn-outline-warning" disabled>Cancelar</button>
+                </div>
+            </section>
+        </form>
+
+    </section>
+</body>
+
+<!-- script bootstrap -->
+`
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
