@@ -1,14 +1,14 @@
 <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- Estilos propios -->
 <link rel="stylesheet" href="../../styles.css">
 <!-- script principal -->
 <script type="module" src="../newTask/newTask.js"></script>
 
 <body>
-    <section class="new-task bg-dark">
-        <form class=" card gap-1 mt-50 p-4 bg-dark shadow">
+    <div class="new-task bg-dark">
+        <form class="card gap-1 mt-50 p-4 bg-dark shadow" id="task_form">
             <section id="title">
                 <h1> Tarea para terminar ¡hoy!: </h1>
             </section>
@@ -30,33 +30,42 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
                     <h6><span id="count_char_desc"></span>/500</h4>
                 </div>
             </section>
-             <section id="task_priority">
-                <label for="task_priority" class="">Prioridad:</label>
-                <div class="form-floating pb-2">
-                    <button type="button" class="btn btn-outline-secondary">Baja</button>
-                    <button type="button" class="btn btn-outline-secondary">Media</button>
-                    <button type="button" class="btn btn-outline-secondary">Alta</button>
-                </div>
-            </section>
-            <section id="task_initial_time">
-                <div class="form-floating">
-                    <input type="time" class="form-control" id="task_title_input" placeholder="">
-                    <label for="task_title_input" class="p-2">Hora de finalización ¡hoy!</label>
-                </div>
+            <section id="task_priority">
+                <fieldset class="mb-3">
+                    <legend class="form-label fs-6">Prioridad:</legend>
+                    <div class="btn-group pb-2" role="group" aria-label="Botones para escoger prioridad">
+                        <input type="radio" class="btn-check" name="priority" id="priority_low" value="low"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="priority_low">Baja</label>
+
+                        <input type="radio" class="btn-check" name="priority" id="priority_medium" value="medium"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="priority_medium">Media</label>
+
+                        <input type="radio" class="btn-check" name="priority" id="priority_high" value="high"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="priority_high">Alta</label>
+                    </div>
+                </fieldset>
             </section>
             <section id="task_deadline_time">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="task_deadline_time_input" placeholder="">
+                    <label for="task_title_input" class="p-2">Hora de finalización ¡hoy! (hh:mm p.m.)</label>
+                </div>
+            </section>
+            <section id="task_submit">
                 <div class="d-flex flex-row-reverse form-floating pt-2 gap-4">
                     <button type="submit" class="btn btn-success ">Agregar tarea</button>
-                    <button type="button" class="btn btn-outline-warning" disabled>Cancelar</button>
+                    <button type="button" class="btn btn-outline-warning">Cancelar</button>
                 </div>
             </section>
         </form>
-
-    </section>
+    </div>
 </body>
 
 <!-- script bootstrap -->
-`
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
