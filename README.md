@@ -1,3 +1,5 @@
-﻿# Lab_Gestor_Tareas_Juan_Rodriguez
+# Lab_Gestor_Tareas_Juan_Rodriguez
 
-Parte funcional /src/components/newTask/new_task.html
+Inicializar desde la carpeta src/
+
+Funcional Añadir tarea validada en LocalStorage en /src/components/newTask/new_task.html
