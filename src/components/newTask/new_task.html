@@ -4,7 +4,7 @@
 <!-- Estilos propios -->
 <link rel="stylesheet" href="../../styles.css">
 <!-- script principal -->
-<script type="module" src="../newTask/newTask.js"></script>
+<script type="module" src="../newTask/newTask_controller.js"></script>
 
 <body>
     <div class="new-task bg-dark">
@@ -14,7 +14,7 @@
             </section>
             <section id="task_title" class="">
                 <div class="form-floating mb-1 shadow">
-                    <input type="text" class="form-control" id="task_title_input" placeholder="">
+                    <input name="title" type="text" class="form-control" id="task_title_input" placeholder="">
                     <label for="task_title_input" class="p-2">Nombra la tarea para ¡hoy!</label>
                 </div>
                 <div class="d-flex flex-row-reverse">
@@ -23,7 +23,7 @@
             </section>
             <section id="task_descr">
                 <div class="form-floating mb-1">
-                    <textarea class="form-control" placeholder="" id="task_text_area" style="height: 100px"></textarea>
+                    <textarea name="description" class="form-control" placeholder="" id="task_text_area" style="height: 100px"></textarea>
                     <label for="task_text_area" class="p-2">Añade la descripción o notas de la tarea:</label>
                 </div>
                 <div class="d-flex flex-row-reverse">
@@ -50,8 +50,8 @@
             </section>
             <section id="task_deadline_time">
                 <div class="form-floating">
-                    <input type="time" class="form-control" id="task_deadline_time_input" placeholder="">
-                    <label for="task_title_input" class="p-2">Hora de finalización ¡hoy! (hh:mm p.m.)</label>
+                    <input name="deadline" type="time" class="form-control" id="task_deadline_time_input" placeholder="">
+                    <label for="task_deadline_time_input" class="p-2">Hora de finalización ¡hoy! (hh:mm p.m.)</label>
                 </div>
             </section>
             <section id="task_submit">
