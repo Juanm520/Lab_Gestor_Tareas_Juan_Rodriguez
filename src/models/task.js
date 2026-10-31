@@ -1,14 +1,25 @@
 export class Task {
-  constructor(title, description, priority, deadline) {
+  constructor(title, description, priority, createdAt, deadline) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.description = description;
     this.priority = priority;
-    this.createdAt = new Date();
-    // Calcula el deadline
-    const dayDeadLine = this.createdAt.toISOString().split('T')[0];
-    this.deadline = new Date(`${dayDeadLine}T${deadline}Z`);
+    this.createdAt = createdAt;
+
+    // Calcula el deadline.
+    const [hours, minutes] = deadline.split(':').map(Number);
+    this.deadline = new Date(
+      this.createdAt.getFullYear(),
+      this.createdAt.getMonth(),
+      this.createdAt.getDate(),
+      hours,
+      minutes,
+      0,
+      0
+    );
+    
     this.completed = false;
+    this.completedAt = null;
   }
 
   // Getters

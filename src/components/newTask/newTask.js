@@ -6,12 +6,14 @@ export function dataNewTask(form) {
     const title = formData.get('title').trim();
     const description = formData.get('description').trim();
     const priority = formData.get('priority');
+    const createdAt = new Date()
     const deadline = formData.get('deadline');
 
     const newTask = new Task(
         title,
         description,
         priority,
+        createdAt,
         deadline
     );
 

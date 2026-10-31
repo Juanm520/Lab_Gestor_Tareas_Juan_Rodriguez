@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap');
 
 :root {
-    --bg-body: #1F2623;
+    --bg-body: #212529;
     --bg-sections: #2A332F;
-    --color-font: green;
+    --bg-buttoms: #356D57;
+    --bg-open: #243D31;
+    --bg-progress: #356D57;
+    --bg-done: #78C69B;
+    --color-font: rgb(214, 246, 214);
 }
 
 body, h2, h1, #task_title_input, #task_text_area, label{
@@ -16,6 +20,8 @@ body, h2, h1, #task_title_input, #task_text_area, label{
     color: var(--color-font);
 }
 
+
+
 body {
     background-color: var(--bg-body);
 }
@@ -27,4 +33,20 @@ body {
 .new-task {
     min-width: 320px;
     max-width: 600px;
+}
+
+.active_tasks {
+    background-color: var(--bg-sections);
+}
+
+.tasks-today-column {
+    min-width: 300px;
+}
+
+.inactive_tasks {
+    color: green;
+}
+
+.task {
+    background-color: var(--bg-body);
 }
