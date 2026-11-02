@@ -10,23 +10,11 @@
 <body>
     <main>
 
-        <article class="d-flex  p-4">
+        <article class="d-flex p-4 align-items-center flex-column gap-4 w-100">
+            <button type="button" class="btn btn-secondary btn-lg">Agrega la tarea que debes finalizar ¡HOY!</button>
+            <div class="row g-3 w-100 align-items-stretch justify-content-center gap-2">
 
-            <div class="row g-3 w-100 flex-wrap gap-2">
-
-                <div class="col-12 col-md-4 col-xl-3 border rounded text-success tasks-side-column">
-                    <div class="h-100 p-3">
-                        <div class="mb-4">
-                            <h5 id="too_latest_title" class="fw-bold"></h5>
-                            <small class="">Tareas de Antier.</small>
-                        </div>
-                        <!-- tareas muy pasadas -->
-                        <div id="too_latest_tasks"></div>
-
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-4 col-xl-3 border rounded text-success tasks-side-column">
+                <div class="col-12 col-lg-4 order-2 order-lg-1 border rounded text-success inactive_tasks h-100">
                     <div class="d-flex flex-column h-100 p-3">
                         <div class="mb-4">
                             <h5 id="latest_title" class="fw-bold"></h5>
@@ -38,8 +26,8 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-8 col-xl-5 order-first order-md-last border rounded active_tasks tasks-today-column">
-                    <div class="d-flex flex-column p-3">
+                <div class="col-12 col-lg-8 order-1 order-lg-2 border rounded active_tasks h-100">
+                    <div class="d-flex flex-column h-100 p-3">
                         <div class="mb-4">
                             <h5 id="today_title" class="fw-bold"></h5>
                             <small class="">Tareas activas para hoy.</small>
@@ -49,8 +37,6 @@
 
                     </div>
                 </div>
-
-
 
             </div>
         </article>

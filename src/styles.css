@@ -20,8 +20,6 @@ body, h2, h1, #task_title_input, #task_text_area, label{
     color: var(--color-font);
 }
 
-
-
 body {
     background-color: var(--bg-body);
 }
@@ -39,14 +37,42 @@ body {
     background-color: var(--bg-sections);
 }
 
-.tasks-today-column {
-    min-width: 300px;
-}
-
 .inactive_tasks {
     color: green;
 }
 
 .task {
     background-color: var(--bg-body);
+}
+
+.btn-lg {
+    background-color: var(--bg-progress);
+    width: 80%;
+}
+
+@media (max-width: 991.98px) {
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .active_tasks,
+    .inactive_tasks {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .active_tasks {
+        order: 1;
+    }
+
+    .inactive_tasks {
+        order: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    .row {
+        gap: 1rem;
+    }
 }
