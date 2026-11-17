@@ -1,6 +1,7 @@
 export function renderTask(list, parent) {
     // Renderiza las tasks en el contenedor seleccionado.
-    parent.innerHTML = ""; // Limpia el contenedor previo
+        // Limpia el contenedor previo
+    parent.innerHTML = ""; 
 
     if (list.length === 0) {
         return parent.innerHTML = "No hay tareas para mostrar."
@@ -50,6 +51,5 @@ export function renderTask(list, parent) {
 
         parent.appendChild(divTaks);
     })
-
 }
 

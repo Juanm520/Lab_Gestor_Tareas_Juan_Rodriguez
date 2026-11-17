@@ -5,7 +5,6 @@ export class Task {
     this.description = description;
     this.priority = priority;
     this.createdAt = createdAt;
-
     // Calcula el deadline.
     const [hours, minutes] = deadline.split(':').map(Number);
     this.deadline = new Date(
@@ -37,6 +36,10 @@ export class Task {
 
   getDeadline() {
     return this.deadline;
+  }
+
+  getCreatedAt() {
+    return this.createdAt;
   }
 
   isCompleted() {
@@ -71,13 +74,17 @@ export class Task {
   }
 
   setDeadline(deadline) {
-    const date = new Date(deadline);
 
-    if (Number.isNaN(date.getTime())) {
-      throw new TypeError('La fecha límite no es válida.');
-    }
-
-    this.deadline = date;
+    const [hours, minutes] = deadline.split(':').map(Number);
+    this.deadline = new Date(
+      this.createdAt.getFullYear(),
+      this.createdAt.getMonth(),
+      this.createdAt.getDate(),
+      hours,
+      minutes,
+      0,
+      0
+    );
   }
 
   // Cambiar estado

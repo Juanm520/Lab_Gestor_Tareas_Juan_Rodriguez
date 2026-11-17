@@ -35,10 +35,12 @@ body {
 
 .active_tasks {
     background-color: var(--bg-sections);
+    max-width: 600px;
 }
 
 .inactive_tasks {
     color: green;
+    max-width: 300px;
 }
 
 .task {
@@ -48,9 +50,10 @@ body {
 .btn-lg {
     background-color: var(--bg-progress);
     width: 80%;
+    max-width: 900px;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1023px) {
     .row {
         display: flex;
         flex-direction: column;

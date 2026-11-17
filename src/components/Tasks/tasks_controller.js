@@ -1,11 +1,10 @@
-import { renderTask } from "../../utils/renderTask.js";
-import { getTasksLocalStorage } from "../../utils/localStorage.js";
+import { renderTask } from "./renderTask.js";
+import { getTasksLocalStorage } from "../../services/tasksInlocalStorage.js";
 
 // Obtiene las tareas.
 const tasks = getTasksLocalStorage()
 
 // Titulos de los Containers de las tareas y Containers.
-const containerTooLatestTasks = document.getElementById('too_latest_tasks')
 const containerLatestTasks = document.getElementById('latest_tasks')
 const containerTodayTasks = document.getElementById('today_tasks')
 const titleLatestTasks = document.getElementById('latest_title')
