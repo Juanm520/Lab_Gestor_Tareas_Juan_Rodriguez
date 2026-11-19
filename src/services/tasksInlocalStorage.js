@@ -14,6 +14,7 @@ export function newTaskLocalStorage(task){
 
     // Llama tareas y añade la tarea al array.
     const tasks = JSON.parse(localStorage.getItem(ITEM_TASKS))
+    console.log('Task to add:', task);
     tasks.push(task)
 
     // 
