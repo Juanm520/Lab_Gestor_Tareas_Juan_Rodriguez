@@ -1,24 +1,13 @@
 export class Task {
-  constructor(title, description, priority, createdAt, deadline) {
+  constructor(title, description, priority, createdAt, deadline, completed = false, completedAt = null) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.createdAt = createdAt;
-    // Calcula el deadline.
-    const [hours, minutes] = deadline.split(':').map(Number);
-    this.deadline = new Date(
-      this.createdAt.getFullYear(),
-      this.createdAt.getMonth(),
-      this.createdAt.getDate(),
-      hours,
-      minutes,
-      0,
-      0
-    );
-    
-    this.completed = false;
-    this.completedAt = null;
+    this.deadline = deadline;
+    this.completed = completed;
+    this.completedAt = completedAt;
   }
 
   // Getters
@@ -74,17 +63,22 @@ export class Task {
   }
 
   setDeadline(deadline) {
+    if (!deadline instanceof Date) {
+      throw new TypeError('El deadline debe ser una fecha válida.');
+    }
 
-    const [hours, minutes] = deadline.split(':').map(Number);
-    this.deadline = new Date(
-      this.createdAt.getFullYear(),
-      this.createdAt.getMonth(),
-      this.createdAt.getDate(),
-      hours,
-      minutes,
-      0,
-      0
-    );
+    // No puede ser anterior a la fecha de creación.
+    if (deadline.getTime() < this.createdAt.getTime()) {
+      throw new RangeError('El deadline no puede ser anterior a la fecha de creación.');
+    }
+
+    // No puede pasar del final del día actual (23:59:59.999 hora local).
+    const endOfToday = new Date().setHours(23, 59, 59, 999)
+    if (deadline.getTime() > endOfToday.getTime()) {
+      throw new RangeError('El deadline no puede ser posterior al día actual.');
+    }
+
+    this.deadline = deadline;
   }
 
   // Cambiar estado

@@ -1,5 +1,4 @@
-import { renderTask } from "./renderTask.js";
-import { getTasksLocalStorage } from "../../services/tasksInlocalStorage.js";
+import { tasksController } from "./tasks_controller.js";
 import { EVENTS, emit, on } from "../../utils/events.js";
 
 // Componente <tasks>
@@ -52,33 +51,9 @@ class Tasks extends HTMLElement {
 
     // Lee las tareas y vuelve a refrescar la lista de tareas.
     render() {
-        // Obtiene las tareas.
-        const tasks = getTasksLocalStorage()
 
-        // Titulos y containers (se buscan dentro del componente, no en todo el documento).
-        const containerLatestTasks = this.querySelector('[data-latest-tasks]')
-        const containerTodayTasks = this.querySelector('[data-today-tasks]')
-        const titleLatestTasks = this.querySelector('[data-latest-title]')
-        const titleTodayTasks = this.querySelector('[data-today-title]')
-
-        // Define el dia y la hora actual.
-        const actualDate = new Date()
-        const yesterday = new Date(actualDate - 1 * 24 * 60 * 60 * 1000)
-
-        // Define los titulos.
-        titleLatestTasks.innerText =
-            `${yesterday.toLocaleString('es-ES', { day: 'numeric', month: 'long' })}`
-
-        titleTodayTasks.innerText =
-            `${actualDate.toLocaleString('es-ES', { day: 'numeric', month: 'long' })}`
-
-        // tareas de ayer.
-        const latestTasks = tasks.filter(task => task.createdAt.getDate() < actualDate.getDate())
-        renderTask(latestTasks, containerLatestTasks)
-
-        // tareas de hoy.
-        const todayTasks = tasks.filter(task => task.createdAt.getDate() === actualDate.getDate())
-        renderTask(todayTasks, containerTodayTasks)
+        tasksController(this)
+      
     }
 }
 
