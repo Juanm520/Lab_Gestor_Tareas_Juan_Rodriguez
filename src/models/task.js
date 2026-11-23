@@ -1,24 +1,30 @@
 export class Task {
-  constructor(title, description, priority, createdAt, deadline) {
-    this.id = crypto.randomUUID();
+  constructor(title, description, priority, createdAt, deadline, inProgress = false, completed = false, completedAt = null, id = crypto.randomUUID()) {
+    // El id se genera si no se recibe el parametro.
+    this.id = id;
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.createdAt = createdAt;
-    // Calcula el deadline.
-    const [hours, minutes] = deadline.split(':').map(Number);
-    this.deadline = new Date(
-      this.createdAt.getFullYear(),
-      this.createdAt.getMonth(),
-      this.createdAt.getDate(),
-      hours,
-      minutes,
-      0,
-      0
+    this.deadline = deadline;
+    this.inProgress = inProgress;
+    this.completed = completed;
+    this.completedAt = completedAt;
+  }
+
+  // Reconstruye una tarea existente.
+  static fromJSON(taskJSON) {
+    return new Task(
+      taskJSON.title,
+      taskJSON.description,
+      taskJSON.priority,
+      new Date(taskJSON.createdAt),
+      new Date(taskJSON.deadline),
+      taskJSON.inProgress ?? false,
+      taskJSON.completed ?? false,
+      taskJSON.completedAt ? new Date(taskJSON.completedAt) : null,
+      taskJSON.id
     );
-    
-    this.completed = false;
-    this.completedAt = null;
   }
 
   // Getters
@@ -34,6 +40,12 @@ export class Task {
     return this.priority;
   }
 
+  // Prioridad en español para mostrar en la UI.
+  getPriorityLabel() {
+    const labels = { low: 'Baja', medium: 'Media', high: 'Alta' };
+    return labels[this.priority];
+  }
+
   getDeadline() {
     return this.deadline;
   }
@@ -44,6 +56,23 @@ export class Task {
 
   isCompleted() {
     return this.completed;
+  }
+
+  getTaskStatus(actualDate) {
+    if (this.completed) {
+      return 'Hecha';
+    }
+
+    // Creada ayer o ya pasó el deadline: vencida.
+    if (this.isOverdue(actualDate)) {
+      return 'Vencida';
+    }
+
+    if (this.inProgress) {
+      return 'En progreso';
+    }
+
+    return 'Abierta';
   }
 
   // Setters
@@ -74,31 +103,71 @@ export class Task {
   }
 
   setDeadline(deadline) {
+    if (!deadline instanceof Date) {
+      throw new TypeError('El deadline debe ser una fecha válida.');
+    }
 
-    const [hours, minutes] = deadline.split(':').map(Number);
-    this.deadline = new Date(
-      this.createdAt.getFullYear(),
-      this.createdAt.getMonth(),
-      this.createdAt.getDate(),
-      hours,
-      minutes,
-      0,
-      0
-    );
+    // No puede ser anterior a la fecha de creación.
+    if (deadline.getTime() < this.createdAt.getTime()) {
+      throw new RangeError('El deadline no puede ser anterior a la fecha de creación.');
+    }
+
+    // No puede pasar del final del día actual (23:59:59.999 hora local).
+    const endOfToday = new Date().setHours(23, 59, 59, 999)
+    if (deadline.getTime() > endOfToday.getTime()) {
+      throw new RangeError('El deadline no puede ser posterior al día actual.');
+    }
+
+    this.deadline = deadline;
   }
 
-  // Cambiar estado
+  // Cambiar a completada
   complete() {
     this.completed = true;
+    this.inProgress = false;
+    this.completedAt = new Date();
   }
 
-  toggleCompleted() {
-    this.completed = !this.completed;
+  // Cambiar a en progreso
+  toProgress() {
+    this.inProgress = true;
+    this.completed = false;
+    this.completedAt = null;
+  }
+
+  // Cambiar a abierta
+  toUncompleted() {
+    this.inProgress = false;
+    this.completed = false;
+    this.completedAt = null;
+  }
+  
+
+
+  // Avanza el estado: Abierta -> En progreso -> Hecha -> Abierta.
+  toggleTaskStatus() {
+    // Si es completada, la vuelve a abierta.
+    if (this.completed) {
+      this.toUncompleted()
+      return;
+    }
+
+    // Si está en progreso, la vuelve hecha.
+    if (this.inProgress) {
+      this.complete();
+      return;
+    }
+    
+    // Si está abierta, la vuelve en progreso.
+    if (!this.inProgress && !this.completed) {
+      this.toProgress();
+      return;
+    }
   }
 
   // Consultar estado de vencimiento
   isOverdue() {
-    if (this.completed || !this.deadline) {
+    if (this.completed) {
       return false;
     }
 

@@ -1,3 +1,4 @@
 // Componentes personalizados.
-import "./components/newTask/NewTaskModal.js";
-import "./components/Tasks/Tasks.js";
+import "./components/newTask/newTaskComponent.js";
+import "./components/newTask/newTaskModal.js";
+import "./components/tasks/tasksComponent.js";

@@ -1,4 +1,4 @@
-import { Task } from './../../models/task.js';
+import { Task } from '../../models/Task.js';
 
 export function dataNewTask(form) {
     const formData = new FormData(form);
@@ -7,15 +7,14 @@ export function dataNewTask(form) {
     const description = formData.get('description').trim();
     const priority = formData.get('priority');
     const createdAt = new Date()
-    const deadline = formData.get('deadline');
+    const deadlineForm = formData.get('deadline');
+    const deadline = new Date(createdAt.toDateString() + ' ' + deadlineForm);
 
-    const newTask = new Task(
+    return new Task(
         title,
         description,
         priority,
         createdAt,
         deadline
     );
-
-    return newTask
 }
