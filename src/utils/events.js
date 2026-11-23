@@ -5,6 +5,7 @@ export const EVENTS = {
     OPEN_NEW_TASK: 'ui:open-new-task',
     // Para cambios en la tarea.
     TASK_CREATED: 'task:created',
+    TASK_UPDATED: 'task:updated',
 }
 
 // Evento con datos opcionales.

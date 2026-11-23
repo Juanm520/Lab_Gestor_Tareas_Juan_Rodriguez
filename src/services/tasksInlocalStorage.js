@@ -21,22 +21,25 @@ export function newTaskLocalStorage(task){
     return localStorage.setItem(ITEM_TASKS, JSON.stringify(tasks))
 }
 
+// Reemplaza la tarea guardada con el mismo id.
+export function updateTaskLocalStorage(task){
+    const tasks = JSON.parse(localStorage.getItem(ITEM_TASKS) ?? '[]')
+    const updatedTasks = tasks.map(taskJSON => taskJSON.id === task.id ? task : taskJSON)
+
+    return localStorage.setItem(ITEM_TASKS, JSON.stringify(updatedTasks))
+}
+
 export function getTasksLocalStorage(){
 
     // Valida la existencia del item. 
     if (! localStorage.getItem(ITEM_TASKS)){
-            return localStorage.setItem(ITEM_TASKS, JSON.stringify([]))
+        localStorage.setItem(ITEM_TASKS, JSON.stringify([]))
+        return []
     }
 
     // Llama tareas y las retorna.
     const tasksLocalStorage = JSON.parse(localStorage.getItem(ITEM_TASKS))
-    
-    // Retorna en instancias Task.
-    return tasksLocalStorage.map(task => new Task(
-                                        task.title, 
-                                        task.description, 
-                                        task.priority, 
-                                        new Date(task.createdAt), 
-                                        new Date(task.deadline))
-                                )
+
+    // Retorna en instancias Task conservando id y estado.
+    return tasksLocalStorage.map(taskJSON => Task.fromJSON(taskJSON))
 }

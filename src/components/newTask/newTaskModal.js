@@ -2,7 +2,7 @@ import { titleValidation, descriptionValidation, priorityValidation, timeValidat
 import { charCountingHTML } from "../../utils/charCounting.js";
 import { EVENTS, emit, on } from "../../utils/events.js";
 import { modalTemplate, openModal, closeModal, onModalShown, onModalHidden } from "../../utils/modal.js";
-import { dataNewTask } from "./newTask.js";
+import { dataNewTask } from "./newTaskComponent.js";
 import { newTaskLocalStorage } from "../../services/tasksInlocalStorage.js";
 
 const MODAL_ID = 'new_task_modal'

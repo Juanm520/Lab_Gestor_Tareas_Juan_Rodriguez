@@ -1,4 +1,4 @@
-import { tasksController } from "./tasks_controller.js";
+import { tasksController } from "./tasksController.js";
 import { EVENTS, emit, on } from "../../utils/events.js";
 
 // Componente <tasks>
@@ -37,21 +37,24 @@ class Tasks extends HTMLElement {
 
         this.render()
 
-        // Pide abrir el formulario de nueva tarea (no sabe que componente lo atiende).
+        // Pide abrir el formulario de nueva tarea.
         this.querySelector('[data-new-task]')
             .addEventListener('click', () => emit(EVENTS.OPEN_NEW_TASK))
 
         // Refresca la lista cuando se crea una tarea.
         this.offTaskCreated = on(EVENTS.TASK_CREATED, () => this.render())
+
+        // Refresca la lista cuando cambia el estado de una tarea.
+        this.offTaskUpdated = on(EVENTS.TASK_UPDATED, () => this.render())
     }
 
     disconnectedCallback() {
         this.offTaskCreated?.()
+        this.offTaskUpdated?.()
     }
 
-    // Lee las tareas y vuelve a refrescar la lista de tareas.
     render() {
-
+        // Lee las tareas y vuelve a refrescar la lista de tareas.
         tasksController(this)
       
     }

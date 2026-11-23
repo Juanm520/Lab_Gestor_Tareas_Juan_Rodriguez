@@ -1,10 +1,9 @@
-import { renderTask } from "./renderTask.js";
+import { renderTodayTask } from "./renderTasks.js";
 import { getTasksLocalStorage } from "../../services/tasksInlocalStorage.js";
 
 export function tasksController(tasksHTML) {
     // Obtiene las tareas.
     const tasks = getTasksLocalStorage()
-    console.log('Tasks from localStorage:', tasks);
 
     // Titulos de los Containers de las tareas y Containers.
     const containerLatestTasks = tasksHTML.querySelector('[data-latest-tasks]')
@@ -25,10 +24,10 @@ export function tasksController(tasksHTML) {
 
     // tareas de ayer.
     const latesTasks = tasks.filter(task => task.createdAt.getDate() === yesterday.getDate())
-    renderTask(latesTasks, containerLatestTasks)
+    renderTodayTask(latesTasks, containerLatestTasks)
 
     // tareas de hoy.
     const todayTasks = tasks.filter(task => task.createdAt.getDate() === actualDate.getDate())
-    renderTask(todayTasks, containerTodayTasks)
+    renderTodayTask(todayTasks, containerTodayTasks)
 
 }
