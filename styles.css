@@ -53,6 +53,57 @@ body {
     max-width: 900px;
 }
 
+/* Selector de prioridad del modal */
+.btn-outline-priority {
+    color: var(--color-font);
+    border-color: var(--bg-buttoms);
+    background-color: transparent;
+}
+
+.btn-outline-priority:hover {
+    color: var(--color-font);
+    background-color: var(--bg-open);
+    border-color: var(--bg-buttoms);
+}
+
+#task_deadline_time_input {
+    background-color: var(--bg-sections);
+    color: var(--color-font);
+}
+
+/* Opción seleccionada (base) */
+.btn-check:checked + .btn-outline-priority,
+.btn-check:active + .btn-outline-priority {
+    color: var(--color-font);
+    background-color: var(--bg-buttoms);
+    border-color: var(--bg-buttoms);
+}
+
+/* Anillo de foco (Bootstrap lo pone azul por defecto) */
+.btn-check:focus + .btn-outline-priority,
+.btn-outline-priority:focus {
+    box-shadow: 0 0 0 0.25rem rgba(53, 109, 87, 0.5); /* --bg-buttoms al 50% */
+}
+
+/* Color por prioridad, igual que los badges de las tareas */
+#priority_low:checked + .btn-outline-priority {
+    background-color: var(--bg-open);
+    border-color: var(--bg-open);
+    color: #FFFFFF;
+}
+
+#priority_medium:checked + .btn-outline-priority {
+    background-color: var(--bg-progress);
+    border-color: var(--bg-progress);
+    color: #FFFFFF;
+}
+
+#priority_high:checked + .btn-outline-priority {
+    background-color: var(--bg-done);
+    border-color: var(--bg-done);
+    color: #1A1A1A;
+}
+
 @media (max-width: 1023px) {
     .row {
         display: flex;

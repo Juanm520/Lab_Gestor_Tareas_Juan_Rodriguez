@@ -33,13 +33,13 @@ const formTemplate = `
                 <legend class="form-label fs-6">Prioridad:</legend>
                 <div class="btn-group pb-2" role="group" aria-label="Botones para escoger prioridad">
                     <input type="radio" class="btn-check" name="priority" id="priority_low" value="low" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="priority_low">Baja</label>
+                    <label class="btn btn-outline-priority" for="priority_low">Baja</label>
 
                     <input type="radio" class="btn-check" name="priority" id="priority_medium" value="medium" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="priority_medium">Media</label>
+                    <label class="btn btn-outline-priority" for="priority_medium">Media</label>
 
                     <input type="radio" class="btn-check" name="priority" id="priority_high" value="high" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="priority_high">Alta</label>
+                    <label class="btn btn-outline-priority" for="priority_high">Alta</label>
                 </div>
             </fieldset>
         </section>
