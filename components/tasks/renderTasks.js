@@ -14,7 +14,10 @@ export function renderTodayTask(list, parent) {
     list.forEach((task) => {
         const divTaks = document.createElement("div");
         // Clases para el elemento
-        divTaks.className = "card task rounded-5";
+        divTaks.className = "card task task-clickable rounded-5";
+        divTaks.tabIndex = 0;
+        divTaks.setAttribute("role", "button");
+        divTaks.setAttribute("aria-label", "Ver detalle de la tarea");
         // Hora y fecha actual
         const actualDate = new Date()
 
@@ -74,6 +77,21 @@ export function renderTodayTask(list, parent) {
             task.toggleTaskStatus()
             updateTaskLocalStorage(task)
             emit(EVENTS.TASK_UPDATED, task)
+        })
+
+        // Abre la vista detallada (ignora el clic en el boton de estado).
+        const openDetail = (e) => {
+            if (e.target.closest('[data-task-status]')) return
+            emit(EVENTS.OPEN_TASK_DETAIL, task.id)
+        }
+        divTaks.addEventListener('click', openDetail)
+        divTaks.addEventListener('keydown', (e) => {
+            // Solo si el foco esta en la tarjeta (no en el boton de estado).
+            if (e.target !== divTaks) return
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                openDetail(e)
+            }
         })
 
         parent.appendChild(divTaks);

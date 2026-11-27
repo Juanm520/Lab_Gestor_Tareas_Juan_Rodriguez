@@ -10,7 +10,7 @@
     --color-font: rgb(214, 246, 214);
 }
 
-body, h2, h1, #task_title_input, #task_text_area, label{
+body, h2, h1, .task-field, label{
     font-family: "Geist Pixel", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -24,8 +24,12 @@ body {
     background-color: var(--bg-body);
 }
 
-#task_title_input, #task_text_area{
-    background: var(--bg-sections);
+/* Campos del formulario de tarea (gana a .form-control:focus/:disabled de Bootstrap) */
+.form-control.task-field,
+.form-control.task-field:focus,
+.form-control.task-field:disabled {
+    background-color: var(--bg-sections);
+    color: var(--color-font);
 }
 
 .new-task {
@@ -66,11 +70,6 @@ body {
     border-color: var(--bg-buttoms);
 }
 
-#task_deadline_time_input {
-    background-color: var(--bg-sections);
-    color: var(--color-font);
-}
-
 /* Opción seleccionada (base) */
 .btn-check:checked + .btn-outline-priority,
 .btn-check:active + .btn-outline-priority {
@@ -86,22 +85,37 @@ body {
 }
 
 /* Color por prioridad, igual que los badges de las tareas */
-#priority_low:checked + .btn-outline-priority {
+.btn-check[value="low"]:checked + .btn-outline-priority {
     background-color: var(--bg-open);
     border-color: var(--bg-open);
     color: #FFFFFF;
 }
 
-#priority_medium:checked + .btn-outline-priority {
+.btn-check[value="medium"]:checked + .btn-outline-priority {
     background-color: var(--bg-progress);
     border-color: var(--bg-progress);
     color: #FFFFFF;
 }
 
-#priority_high:checked + .btn-outline-priority {
+.btn-check[value="high"]:checked + .btn-outline-priority {
     background-color: var(--bg-done);
     border-color: var(--bg-done);
     color: #1A1A1A;
+}
+
+/* Tarjetas de tarea clicables */
+.task-clickable {
+    cursor: pointer;
+}
+
+.task-clickable:hover,
+.task-clickable:focus-visible {
+    outline: 1px solid var(--bg-buttoms);
+}
+
+/* Modal en modo vista (campos deshabilitados) */
+.task-fields:disabled .form-control {
+    cursor: default;
 }
 
 /* Navbar */
