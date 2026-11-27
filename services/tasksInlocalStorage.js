@@ -43,3 +43,8 @@ export function getTasksLocalStorage(){
     // Retorna en instancias Task conservando id y estado.
     return tasksLocalStorage.map(taskJSON => Task.fromJSON(taskJSON))
 }
+
+// Busca una tarea por id. Retorna null si no existe.
+export function getTaskByIdLocalStorage(id){
+    return getTasksLocalStorage().find(task => task.id === id) ?? null
+}

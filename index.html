@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -16,25 +18,31 @@
 </head>
 
 <body class="bg-dark">
-    <nav>
-        Aqui va el navbar
-    </nav>
+    <header class="d-flex justify-content-center px-4 pt-4">
+        <!-- Navbar -->
+        <main-navbar class="w-100 nav-wrapper"></main-navbar>
+    </header>
     <main class="">
         <section id="main_tasks">
             <!-- Modal newTask -->
             <new-task-modal></new-task-modal>
+            <!-- Modal detalle/edicion de tarea -->
+            <show-detail-task-modal></show-detail-task-modal>
             <!-- Acciones de tareas -->
             <tasks-actions></tasks-actions>
         </section>
-        <section id="main_stats">
-            Aqui las estadisticas
+        <section id="main_stats" class="d-flex justify-content-center px-4 pb-4">
+            <!-- Estadisticas -->
+            <tasks-stats class="w-100 stats-wrapper"></tasks-stats>
         </section>
-        <section id="main_feedback">
-            Aqui la frase
+        <section id="main_feedback" class="d-flex justify-content-center px-4 pb-4">
+            <!-- Frase del dia -->
+            <daily-phrase class="w-100 phrase-wrapper"></daily-phrase>
         </section>
     </main>
-    <footer>
-        Aqui el footer
+    <footer class="d-flex justify-content-center px-4 pb-4">
+        <!-- Footer -->
+        <main-footer class="w-100 footer-wrapper"></main-footer>
     </footer>
 
     <!-- script bootstrap -->

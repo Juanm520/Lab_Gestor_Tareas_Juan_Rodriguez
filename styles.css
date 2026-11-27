@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap');
+
+:root {
+    --bg-body: #212529;
+    --bg-sections: #2A332F;
+    --bg-buttoms: #356D57;
+    --bg-open: #243D31;
+    --bg-progress: #356D57;
+    --bg-done: #78C69B;
+    --color-font: rgb(214, 246, 214);
+}
+
+body, h2, h1, .task-field, label{
+    font-family: "Geist Pixel", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "ELSH" 0;
+    color: var(--color-font);
+}
+
+body {
+    background-color: var(--bg-body);
+}
+
+/* Campos del formulario de tarea (gana a .form-control:focus/:disabled de Bootstrap) */
+.form-control.task-field,
+.form-control.task-field:focus,
+.form-control.task-field:disabled {
+    background-color: var(--bg-sections);
+    color: var(--color-font);
+}
+
+.new-task {
+    min-width: 320px;
+    max-width: 600px;
+}
+
+.active_tasks {
+    background-color: var(--bg-sections);
+    max-width: 600px;
+}
+
+.inactive_tasks {
+    color: green;
+    max-width: 300px;
+}
+
+.task {
+    background-color: var(--bg-body);
+}
+
+.btn-lg {
+    background-color: var(--bg-progress);
+    width: 80%;
+    max-width: 900px;
+}
+
+/* Selector de prioridad del modal */
+.btn-outline-priority {
+    color: var(--color-font);
+    border-color: var(--bg-buttoms);
+    background-color: transparent;
+}
+
+.btn-outline-priority:hover {
+    color: var(--color-font);
+    background-color: var(--bg-open);
+    border-color: var(--bg-buttoms);
+}
+
+/* Opción seleccionada (base) */
+.btn-check:checked + .btn-outline-priority,
+.btn-check:active + .btn-outline-priority {
+    color: var(--color-font);
+    background-color: var(--bg-buttoms);
+    border-color: var(--bg-buttoms);
+}
+
+/* Anillo de foco (Bootstrap lo pone azul por defecto) */
+.btn-check:focus + .btn-outline-priority,
+.btn-outline-priority:focus {
+    box-shadow: 0 0 0 0.25rem rgba(53, 109, 87, 0.5); /* --bg-buttoms al 50% */
+}
+
+/* Color por prioridad, igual que los badges de las tareas */
+.btn-check[value="low"]:checked + .btn-outline-priority {
+    background-color: var(--bg-open);
+    border-color: var(--bg-open);
+    color: #FFFFFF;
+}
+
+.btn-check[value="medium"]:checked + .btn-outline-priority {
+    background-color: var(--bg-progress);
+    border-color: var(--bg-progress);
+    color: #FFFFFF;
+}
+
+.btn-check[value="high"]:checked + .btn-outline-priority {
+    background-color: var(--bg-done);
+    border-color: var(--bg-done);
+    color: #1A1A1A;
+}
+
+/* Tarjetas de tarea clicables */
+.task-clickable {
+    cursor: pointer;
+}
+
+.task-clickable:hover,
+.task-clickable:focus-visible {
+    outline: 1px solid var(--bg-buttoms);
+}
+
+/* Modal en modo vista (campos deshabilitados) */
+.task-fields:disabled .form-control {
+    cursor: default;
+}
+
+/* Navbar */
+.nav-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.main-navbar {
+    background-color: var(--bg-body);
+    border-color: var(--color-font) !important;
+}
+
+.main-navbar .nav-icon {
+    width: 36px;
+    height: 36px;
+    background-color: var(--bg-buttoms);
+    color: var(--color-font);
+}
+
+.main-navbar .nav-btn {
+    background-color: var(--bg-buttoms);
+    color: var(--color-font);
+}
+
+.main-navbar .nav-btn:hover,
+.main-navbar .nav-icon:hover {
+    background-color: var(--bg-open);
+    color: var(--color-font);
+}
+
+.main-navbar .nav-link {
+    color: var(--color-font);
+}
+
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link:focus {
+    color: var(--bg-done);
+}
+
+.main-navbar .navbar-toggler {
+    border-color: var(--bg-buttoms);
+}
+
+.main-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(53, 109, 87, 0.5);
+}
+
+.logo {
+    max-width: 25rem;
+}
+
+/* Footer */
+.footer-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.main-footer {
+    background-color: var(--bg-sections);
+    border-color: var(--color-font) !important;
+}
+
+.main-footer .footer-icon {
+    width: 26px;
+    height: 26px;
+    background-color: var(--bg-buttoms);
+    color: var(--color-font);
+}
+
+.main-footer .footer-link {
+    color: var(--color-font);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.main-footer .footer-link:hover,
+.main-footer .footer-link:focus {
+    color: var(--bg-done);
+}
+
+/* Estadisticas */
+.stats-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.stat-card {
+    background-color: var(--bg-sections);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.stat-text {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.stat-progress {
+    height: 6px;
+    background-color: var(--bg-open);
+}
+
+.stat-progress-bar {
+    background-color: var(--bg-done);
+}
+
+/* Frase del dia */
+.phrase-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.phrase-card {
+    background-color: var(--bg-sections);
+}
+
+.phrase-note {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 1023px) {
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .active_tasks,
+    .inactive_tasks {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .active_tasks {
+        order: 1;
+    }
+
+    .inactive_tasks {
+        order: 2;
+    }
+}
+
+
