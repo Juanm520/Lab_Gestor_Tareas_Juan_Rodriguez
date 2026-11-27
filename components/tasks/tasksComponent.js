@@ -6,9 +6,12 @@ class Tasks extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-            <article class="d-flex p-4 align-items-center flex-column gap-4 w-100">
-                <button type="button" class="btn btn-secondary btn-lg" data-new-task>Agrega la tarea que debes finalizar ¡HOY!</button>
+                        <article class="d-flex p-4 align-items-center flex-column gap-4 w-100">
                 <div class="row g-3 w-100 align-items-stretch justify-content-center gap-2">
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn text-center btn-secondary btn-lg" data-new-task>Agrega una tarea a
+                            finalizar ¡HOY!</button>
+                    </div>
 
                     <div class="col-12 col-lg-4 order-2 order-lg-1 border rounded text-success inactive_tasks h-100">
                         <div class="d-flex flex-column h-100 p-3">

@@ -29,8 +29,11 @@ export function statsController(statsHTML) {
             ? `${notDone.length} pendientes, ${overdue} ${overdue === 1 ? 'vencida' : 'vencidas'}.`
             : `${notDone.length} ${notDone.length === 1 ? 'tarea queda pendiente' : 'tareas quedan pendientes'}.`
 
-    statsHTML.querySelector('[data-stats-score-text]').innerText =
+    statsHTML.querySelector('[data-stats-daily-score-text]').innerText =
         total === 0 ? 'Aún no hay tareas para hoy.' : 'Avance general del día.'
+
+    statsHTML.querySelector('[data-stats-total-score-text]').innerText =
+        total === 0 ? 'Aún no hay tareas para calcular' : 'Score general del año.'
 
     // Barra de progreso del score.
     const bar = statsHTML.querySelector('[data-stats-bar]')

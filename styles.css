@@ -164,6 +164,10 @@ body {
     box-shadow: 0 0 0 0.25rem rgba(53, 109, 87, 0.5);
 }
 
+.logo {
+    max-width: 25rem;
+}
+
 /* Footer */
 .footer-wrapper {
     display: block;
@@ -247,7 +251,7 @@ body {
 @media (max-width: 1023px) {
     .row {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .active_tasks,
@@ -265,8 +269,4 @@ body {
     }
 }
 
-@media (max-width: 767px) {
-    .row {
-        gap: 1rem;
-    }
-}
+

@@ -13,7 +13,7 @@ class Stats extends HTMLElement {
                 </div>
 
                 <div class="row g-3 m-0">
-                    <div class="col-12 col-md-4 ps-md-0">
+                    <div class="col-12 col-sm-3">
                         <div class="stat-card rounded p-3 h-100">
                             <small class="stat-label text-uppercase fw-bold">Hechas hoy</small>
                             <p class="stat-value m-0" data-stats-done>0</p>
@@ -21,7 +21,7 @@ class Stats extends HTMLElement {
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-sm-3">
                         <div class="stat-card rounded p-3 h-100">
                             <small class="stat-label text-uppercase fw-bold">No hechas hoy</small>
                             <p class="stat-value m-0" data-stats-not-done>0</p>
@@ -29,7 +29,7 @@ class Stats extends HTMLElement {
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4 pe-md-0">
+                    <div class="col-12 col-sm-3">
                         <div class="stat-card rounded p-3 h-100">
                             <small class="stat-label text-uppercase fw-bold">Score del día</small>
                             <p class="stat-value m-0" data-stats-score>0%</p>
@@ -37,7 +37,19 @@ class Stats extends HTMLElement {
                                 aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar stat-progress-bar" data-stats-bar style="width: 0%"></div>
                             </div>
-                            <small class="stat-text" data-stats-score-text></small>
+                            <small class="stat-text" data-stats-daily-score-text></small>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-3">
+                        <div class="stat-card rounded p-3 h-100">
+                            <small class="stat-label text-uppercase fw-bold">Score General</small>
+                            <p class="stat-value m-0" data-stats-score>0%</p>
+                            <div class="progress stat-progress my-1" role="progressbar" aria-label="Score del día"
+                                aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar stat-progress-bar" data-stats-bar style="width: 0%"></div>
+                            </div>
+                            <small class="stat-text" data-stats-total-score-text></small>
                         </div>
                     </div>
                 </div>
