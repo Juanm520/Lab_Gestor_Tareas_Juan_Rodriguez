@@ -103,19 +103,18 @@ export class Task {
   }
 
   setDeadline(deadline) {
-    if (!deadline instanceof Date) {
+    if (!(deadline instanceof Date) || Number.isNaN(deadline.getTime())) {
       throw new TypeError('El deadline debe ser una fecha válida.');
     }
 
-    // No puede ser anterior a la fecha de creación.
-    if (deadline.getTime() < this.createdAt.getTime()) {
-      throw new RangeError('El deadline no puede ser anterior a la fecha de creación.');
-    }
+    // Debe quedar dentro del mismo día en que se creó la tarea (hora local).
+    const startOfDay = new Date(this.createdAt);
+    startOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date(this.createdAt);
+    endOfDay.setHours(23, 59, 59, 999);
 
-    // No puede pasar del final del día actual (23:59:59.999 hora local).
-    const endOfToday = new Date().setHours(23, 59, 59, 999)
-    if (deadline.getTime() > endOfToday.getTime()) {
-      throw new RangeError('El deadline no puede ser posterior al día actual.');
+    if (deadline.getTime() < startOfDay.getTime() || deadline.getTime() > endOfDay.getTime()) {
+      throw new RangeError('La hora de finalización debe ser del mismo día en que se creó la tarea.');
     }
 
     this.deadline = deadline;
