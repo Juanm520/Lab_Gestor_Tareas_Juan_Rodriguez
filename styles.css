@@ -104,6 +104,132 @@ body {
     color: #1A1A1A;
 }
 
+/* Navbar */
+.nav-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.main-navbar {
+    background-color: var(--bg-body);
+    border-color: var(--color-font) !important;
+}
+
+.main-navbar .nav-icon {
+    width: 36px;
+    height: 36px;
+    background-color: var(--bg-buttoms);
+    color: var(--color-font);
+}
+
+.main-navbar .nav-btn {
+    background-color: var(--bg-buttoms);
+    color: var(--color-font);
+}
+
+.main-navbar .nav-btn:hover,
+.main-navbar .nav-icon:hover {
+    background-color: var(--bg-open);
+    color: var(--color-font);
+}
+
+.main-navbar .nav-link {
+    color: var(--color-font);
+}
+
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link:focus {
+    color: var(--bg-done);
+}
+
+.main-navbar .navbar-toggler {
+    border-color: var(--bg-buttoms);
+}
+
+.main-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(53, 109, 87, 0.5);
+}
+
+/* Footer */
+.footer-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.main-footer {
+    background-color: var(--bg-sections);
+    border-color: var(--color-font) !important;
+}
+
+.main-footer .footer-icon {
+    width: 26px;
+    height: 26px;
+    background-color: var(--bg-buttoms);
+    color: var(--color-font);
+}
+
+.main-footer .footer-link {
+    color: var(--color-font);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.main-footer .footer-link:hover,
+.main-footer .footer-link:focus {
+    color: var(--bg-done);
+}
+
+/* Estadisticas */
+.stats-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.stat-card {
+    background-color: var(--bg-sections);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.stat-text {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.stat-progress {
+    height: 6px;
+    background-color: var(--bg-open);
+}
+
+.stat-progress-bar {
+    background-color: var(--bg-done);
+}
+
+/* Frase del dia */
+.phrase-wrapper {
+    display: block;
+    max-width: 900px;
+}
+
+.phrase-card {
+    background-color: var(--bg-sections);
+}
+
+.phrase-note {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
 @media (max-width: 1023px) {
     .row {
         display: flex;
