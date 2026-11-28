@@ -1,9 +1,12 @@
 import { renderTodayTask } from "./renderTasks.js";
 import { getTasksLocalStorage } from "../../services/tasksInlocalStorage.js";
+import { getExcusesLocalStorage } from "../../services/excusesInLocalStorage.js";
 
 export function tasksController(tasksHTML) {
     // Obtiene las tareas.
     const tasks = getTasksLocalStorage()
+    // Obtiene las excusas (tareas eliminadas).
+    const excuses = getExcusesLocalStorage()
 
     // Titulos de los Containers de las tareas y Containers.
     const containerLatestTasks = tasksHTML.querySelector('[data-latest-tasks]')
@@ -24,10 +27,12 @@ export function tasksController(tasksHTML) {
 
     // tareas de ayer.
     const latesTasks = tasks.filter(task => task.createdAt.getDate() === yesterday.getDate())
-    renderTodayTask(latesTasks, containerLatestTasks)
+    const latestExcuses = excuses.filter(excuse => excuse.taskCreatedAt.toDateString() === yesterday.toDateString())
+    renderTodayTask(latesTasks, containerLatestTasks, latestExcuses)
 
     // tareas de hoy.
     const todayTasks = tasks.filter(task => task.createdAt.getDate() === actualDate.getDate())
-    renderTodayTask(todayTasks, containerTodayTasks)
+    const todayExcuses = excuses.filter(excuse => excuse.taskCreatedAt.toDateString() === actualDate.toDateString())
+    renderTodayTask(todayTasks, containerTodayTasks, todayExcuses)
 
 }

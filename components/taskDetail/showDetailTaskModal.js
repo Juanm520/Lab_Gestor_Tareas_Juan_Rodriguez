@@ -45,7 +45,8 @@ class ShowDetailTaskModal extends HTMLElement {
                 buttons: `
                     <button type="submit" class="btn btn-success d-none" data-save>Guardar cambios</button>
                     <button type="button" class="btn btn-success d-none" data-edit>Editar</button>
-                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cerrar</button>`,
+                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-link excuse-link p-0 me-auto align-self-center d-none" data-excuse>Eliminar con excusa</button>`,
             }),
             contentClass: 'new-task',
         })
@@ -67,6 +68,10 @@ class ShowDetailTaskModal extends HTMLElement {
         this.info = this.querySelector('[data-task-info]')
         this.btnSave = this.querySelector('[data-save]')
         this.btnEdit = this.querySelector('[data-edit]')
+        this.btnExcuse = this.querySelector('[data-excuse]')
+
+        // Id de la tarea a eliminar con excusa (se usa al terminar de cerrar).
+        this.pendingExcuseId = null
 
         // Submit (solo guarda en modo edicion).
         this.taskForm.form.addEventListener('submit', (e) => this.handleSubmit(e))
@@ -75,6 +80,12 @@ class ShowDetailTaskModal extends HTMLElement {
         this.btnEdit.addEventListener('click', () => {
             this.setMode('edit')
             this.taskForm.inpTitle.focus()
+        })
+
+        // Eliminar con excusa: cierra este modal y luego abre el de la excusa.
+        this.btnExcuse.addEventListener('click', () => {
+            this.pendingExcuseId = this.task?.id ?? null
+            closeModal(this.modalElement)
         })
 
         // Apertura del detalle de una tarea.
@@ -88,6 +99,14 @@ class ShowDetailTaskModal extends HTMLElement {
             this.taskForm.reset()
             this.task = null
             this.setMode('view')
+
+            // Abre el modal de excusa cuando este ya termino de cerrarse
+            // (Bootstrap 5.0 no maneja bien dos modales abiertos a la vez).
+            if (this.pendingExcuseId) {
+                const id = this.pendingExcuseId
+                this.pendingExcuseId = null
+                emit(EVENTS.OPEN_EXCUSE, id)
+            }
         })
     }
 
@@ -137,6 +156,8 @@ class ShowDetailTaskModal extends HTMLElement {
         this.taskForm.fields.disabled = isView
         this.btnSave.classList.toggle('d-none', isView)
         this.btnEdit.classList.toggle('d-none', !(isView && this.task && this.canEdit(this.task)))
+        // El enlace de eliminar solo aparece en edicion.
+        this.btnExcuse.classList.toggle('d-none', mode !== 'edit')
         this.modalTitle.textContent = TITLES[mode]
         this.taskForm.showError()
     }

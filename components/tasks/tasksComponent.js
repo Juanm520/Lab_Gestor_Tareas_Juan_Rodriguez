@@ -49,11 +49,15 @@ class Tasks extends HTMLElement {
 
         // Refresca la lista cuando cambia el estado de una tarea.
         this.offTaskUpdated = on(EVENTS.TASK_UPDATED, () => this.render())
+
+        // Refresca cuando se elimina una tarea con excusa.
+        this.offTaskDeleted = on(EVENTS.TASK_DELETED, () => this.render())
     }
 
     disconnectedCallback() {
         this.offTaskCreated?.()
         this.offTaskUpdated?.()
+        this.offTaskDeleted?.()
     }
 
     render() {

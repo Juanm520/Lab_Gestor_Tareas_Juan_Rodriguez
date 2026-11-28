@@ -3,7 +3,7 @@ const STATUS_COLORS = {
     "Abierta": { bg: "#243D31", text: "#FFFFFF" },
     "En progreso": { bg: "#356D57", text: "#FFFFFF" },
     "Hecha": { bg: "#78C69B", text: "#1A1A1A" },
-    "Vencida": { bg: "#EB5050", text: "#FFFFFF" },
+    "Vencida": { bg: "var(--bg-danger)", text: "#FFFFFF" },
 }
 
 const priorityColors = {

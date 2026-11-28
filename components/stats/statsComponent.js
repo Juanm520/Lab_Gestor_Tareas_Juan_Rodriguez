@@ -35,7 +35,7 @@ class Stats extends HTMLElement {
                             <p class="stat-value m-0" data-stats-score>0%</p>
                             <div class="progress stat-progress my-1" role="progressbar" aria-label="Score del día"
                                 aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar stat-progress-bar" data-stats-bar style="width: 0%"></div>
+                                <div class="progress-bar stat-progress-bar" data-stats-daily-bar style="width: 0%"></div>
                             </div>
                             <small class="stat-text" data-stats-daily-score-text></small>
                         </div>
@@ -44,10 +44,10 @@ class Stats extends HTMLElement {
                     <div class="col-12 col-sm-3">
                         <div class="stat-card rounded p-3 h-100">
                             <small class="stat-label text-uppercase fw-bold">Score General</small>
-                            <p class="stat-value m-0" data-stats-score>0%</p>
-                            <div class="progress stat-progress my-1" role="progressbar" aria-label="Score del día"
+                            <p class="stat-value m-0" data-stats-total-score>0%</p>
+                            <div class="progress stat-progress my-1" role="progressbar" aria-label="Score general"
                                 aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar stat-progress-bar" data-stats-bar style="width: 0%"></div>
+                                <div class="progress-bar stat-progress-bar" data-stats-total-bar style="width: 0%"></div>
                             </div>
                             <small class="stat-text" data-stats-total-score-text></small>
                         </div>
@@ -60,11 +60,15 @@ class Stats extends HTMLElement {
         // Actualiza las estadisticas cuando se crea o cambia una tarea.
         this.offTaskCreated = on(EVENTS.TASK_CREATED, () => this.render())
         this.offTaskUpdated = on(EVENTS.TASK_UPDATED, () => this.render())
+
+        // Refresca cuando se elimina una tarea con excusa.
+        this.offTaskDeleted = on(EVENTS.TASK_DELETED, () => this.render())
     }
 
     disconnectedCallback() {
         this.offTaskCreated?.()
         this.offTaskUpdated?.()
+        this.offTaskDeleted?.()
     }
 
     render() {
