@@ -48,3 +48,11 @@ export function getTasksLocalStorage(){
 export function getTaskByIdLocalStorage(id){
     return getTasksLocalStorage().find(task => task.id === id) ?? null
 }
+
+// Elimina la tarea con el id dado.
+export function deleteTaskLocalStorage(id){
+    const tasks = JSON.parse(localStorage.getItem(ITEM_TASKS) ?? '[]')
+    const remainingTasks = tasks.filter(taskJSON => taskJSON.id !== id)
+
+    return localStorage.setItem(ITEM_TASKS, JSON.stringify(remainingTasks))
+}

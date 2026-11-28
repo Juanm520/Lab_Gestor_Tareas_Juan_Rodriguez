@@ -8,6 +8,7 @@
     --bg-progress: #356D57;
     --bg-done: #78C69B;
     --color-font: rgb(214, 246, 214);
+    --bg-danger: #EB5050;
 }
 
 body, h2, h1, .task-field, label{
@@ -116,6 +117,60 @@ body {
 /* Modal en modo vista (campos deshabilitados) */
 .task-fields:disabled .form-control {
     cursor: default;
+}
+
+/* Excusas (tareas eliminadas) */
+.excuse-card {
+    background-color: var(--bg-danger);
+    color: #FFFFFF;
+}
+
+.excuse-card h6,
+.excuse-card small {
+    color: #FFFFFF;
+}
+
+.excuse-badge {
+    background-color: #FFFFFF;
+    color: var(--bg-danger);
+}
+
+.excuse-text {
+    overflow-wrap: anywhere;
+}
+
+/* Enlace "Eliminar con excusa" del modal de detalle */
+.excuse-link {
+    color: var(--bg-danger);
+    font-size: 0.875rem;
+}
+
+.excuse-link:hover,
+.excuse-link:focus {
+    color: #FFFFFF;
+}
+
+/* Modal de excusa */
+.excuse-count {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.excuse-submit {
+    background-color: var(--bg-danger);
+    border-color: var(--bg-danger);
+    color: #FFFFFF;
+}
+
+.excuse-submit:hover,
+.excuse-submit:focus {
+    background-color: #D43F3F;
+    border-color: #D43F3F;
+    color: #FFFFFF;
+}
+
+.excuse-submit:focus {
+    box-shadow: 0 0 0 0.25rem rgba(235, 80, 80, 0.5);
 }
 
 /* Navbar */
